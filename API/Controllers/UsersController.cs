@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         private readonly DataContext _context;
 
@@ -25,17 +24,12 @@ namespace API.Controllers
         {
             return await _context.Users.ToListAsync();
         }
-
+        
         
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetPeopleDetails(int id)
         {
             return await _context.Users.FindAsync(id);
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
