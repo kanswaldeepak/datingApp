@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
     <div class="container">
       <a class="navbar-brand" [routerLink]="['']" routerLinkActive="router-link-active" >My App</a>      
-      
+      <a class="nav-link" [routerLink]="['/error']" routerLinkActive="active">Errors</a>
+
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <ng-container *ngIf="accountService.currentUser$ | async">
@@ -28,7 +29,8 @@
           </div>
         </div>
 
-        <form class="d-flex" *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <form class="d-flex" *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" 
+        (ngSubmit)="login()" autocomplete="off">
           <input class="form-control me-2" type="text" name="username"
           placeholder="Username" [(ngModel)]="model.Username">
           <input class="form-control me-2" type="password" name="password"
